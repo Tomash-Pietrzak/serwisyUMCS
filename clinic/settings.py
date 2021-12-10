@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_celery_beat',
+    'django_celery_results',
     'users',
     'core',
+    'visits'
 ]
 
 MIDDLEWARE = [
@@ -139,3 +142,5 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 20,
 }
+
+CELERY_RESULT_BACKEND = "django-db"

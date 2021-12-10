@@ -1,6 +1,7 @@
 from abc import ABC
 
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, models
+from django.db.models import fields
 from rest_framework import serializers
 # from profiles.serializers import ProfileSerializer
 

@@ -21,7 +21,7 @@ class UserManager(BaseUserManager):
     to create `User` objects.
     """
 
-    def create_user(self, username, email, type,password=None):
+    def create_user(self, username, email, type, password=None):
         """Create and return a `User` with an email, username and password."""
         user = None
         if username is None:
@@ -133,16 +133,3 @@ class Doctor(User):
 
 class Patient(User):
     pesel = models.CharField(max_length=11, default='')
-
-
-class Visit(models.Model):
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
-    patient = models.ForeignKey(Patient, null=True, blank=True, on_delete=models.CASCADE)
-    address = models.CharField(max_length=255, default='')  # wyrzucić do osobnego modelu(street,Zip, )
-    date = models.DateTimeField(default='')
-
-    class Meta:
-        ordering = ['date']
-
-    def __str__(self):
-        return self.doctor, self.address, self.date

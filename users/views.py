@@ -1,3 +1,4 @@
+from rest_framework.serializers import ListSerializer
 from .models import Doctor, Patient
 from .serializers import DoctorSerializer
 from .serializers import PatientSerializer

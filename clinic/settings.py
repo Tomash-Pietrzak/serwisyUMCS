@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django_celery_results',
     'users',
     'core',
-    'visits'
+    'visits',
 ]
 
 MIDDLEWARE = [

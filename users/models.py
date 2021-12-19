@@ -1,5 +1,4 @@
 import jwt
-
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -111,7 +110,7 @@ class User(AbstractBaseUser, PermissionsMixin, TimestampedModel):
 
         token = jwt.encode({
             'id': self.pk,
-            'exp': int(dt.strftime('%s'))
+            'exp': dt.utcfromtimestamp(dt.timestamp())
         }, settings.SECRET_KEY, algorithm='HS256')
 
         return token

@@ -3,7 +3,11 @@ from abc import ABC
 from django.contrib.auth import authenticate, models
 from django.db.models import fields
 from rest_framework import serializers
-# from profiles.serializers import ProfileSerializer
+
+
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 from .models import User
 from .models import Doctor, Patient
@@ -37,6 +41,29 @@ class RegistrationSerializer(serializers.ModelSerializer):
         # Use the `create_user` method we wrote earlier to create a new user.
         return User.objects.create_user(**validated_data)
 
+    '''
+    def send_mail(html=None, text='Email_body', subject='Hello word', from_email='', to_emails=[]):
+        username_mail = ''
+        password_mail = ''
+        assert isinstance(to_emails, list)
+        msg = MIMEMultipart('alternative')
+        msg['From'] = from_email
+        msg['To'] = ", ".join(to_emails)
+        msg['Subject'] = subject
+        txt_part = MIMEText(text, 'plain')
+        msg.attach(txt_part)
+
+        html_part = MIMEText(f"<p>Here is your password reset token</p><h1>{html}</h1>", 'html')
+        msg.attach(html_part)
+        msg_str = msg.as_string()
+
+        server = smtplib.SMTP(host='smtp.gmail.com', port=587)
+        server.ehlo()
+        server.starttls()
+        server.login(username_mail, password_mail)
+        server.sendmail(from_email, to_emails, msg_str)
+        server.quit()
+    '''
 
 class LoginSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=255)

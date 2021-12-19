@@ -8,7 +8,7 @@ class VisitSerializer(serializers.ModelSerializer):
     class Meta:
         model = Visit
         fields = (
-            'doctor', 'patient', 'address', 'date',
+            'doctor', 'patient', 'address', 'date', 'price'
         )
 
     def create(self, validated_data):
